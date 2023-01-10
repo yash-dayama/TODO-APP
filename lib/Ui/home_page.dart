@@ -4,6 +4,8 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_todo/services/theme_services.dart';
 import 'package:get/get.dart';
 
+import '../services/notification_services.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -18,9 +20,9 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    notifyHelper = NotifyHelper();
     notifyHelper.initializeNotification();
-    notifyHelper = notifyHelper();
-    // notifyHelper.request
+    notifyHelper.requestIOSPermissions();
   }
 
   @override
@@ -46,8 +48,9 @@ class _HomePageState extends State<HomePage> {
           notifyHelper.displayNotification(
               title: "Theme Changed",
               body: Get.isDarkMode
-                  ? "Activated Dark Theme"
-                  : "Activated Light Theme");
+                  ? "Activated Light Theme"
+                  : "Activated Dark Theme");
+          notifyHelper.scheduledNotification();
         },
         child: Icon(
           Icons.nightlight_round,
