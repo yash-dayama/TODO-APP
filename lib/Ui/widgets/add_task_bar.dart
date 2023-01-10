@@ -30,9 +30,21 @@ class _AddTaskPageState extends State<AddTaskPage> {
                 style: headingStyle,
               ),
               MyInputField(title: 'Title', hint: 'Enter title here'),
-              MyInputField(title: 'Note', hint: 'Enter note here'),
-              MyInputField(title: 'Date', hint: DateFormat.yMd().format(_selectedDate),),
-              widget: 
+              MyInputField(
+                title: 'Note',
+                hint: 'Enter note here',
+              ),
+              MyInputField(
+                title: 'Date',
+                hint: DateFormat.yMd().format(_selectedDate),
+                widget: IconButton(
+                  onPressed: () {},
+                  icon: Icon(
+                    Icons.calendar_today_outlined,
+                    color: Colors.black,
+                  ),
+                ),
+              ),
             ],
           ),
         ),
@@ -64,5 +76,21 @@ class _AddTaskPageState extends State<AddTaskPage> {
         ),
       ],
     );
+  }
+
+  _getDateFromUser() async {
+    DateTime? _pickerDate = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2015),
+      lastDate: DateTime(2121),
+    );
+    if (_pickerDate != null) {
+      setState(() {
+        _selectedDate = _pickerDate;
+      });
+    } else {
+      print('Something is wrong');
+    }
   }
 }
