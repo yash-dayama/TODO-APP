@@ -5,6 +5,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_todo/Ui/theme.dart';
 import 'package:flutter_todo/Ui/widgets/add_task_bar.dart';
 import 'package:flutter_todo/Ui/widgets/button.dart';
+import 'package:flutter_todo/controllers/task_controller.dart';
 import 'package:flutter_todo/services/theme_services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -21,7 +22,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   DateTime _selectedDate = DateTime.now();
-
+  final _taskController = Get.put(TaskController());
   var notifyHelper;
 
   @override
@@ -37,12 +38,33 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _appBar(),
+      backgroundColor: context.theme.backgroundColor,
       body: Column(
         children: [
           _addTaskBar(),
           _addDateBar(),
+          _showTasks(),
         ],
       ),
+    );
+  }
+
+  _showTasks() {
+    return Expanded(
+      child: Obx(() {
+        return ListView.builder(
+            itemCount: _taskController.taskList.length,
+            itemBuilder: (_, index) {
+              print(_taskController.taskList.length);
+              return Container(
+                width: 100,
+                height: 50,
+                color: Colors.green,
+                margin: const EdgeInsets.only(bottom: 10),
+                child: Text(_taskController.taskList[index].title.toString()),
+              );
+            });
+      }),
     );
   }
 
@@ -105,7 +127,12 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ),
-          MyButton(label: '+ Add Task', onTap: () => Get.to(AddTaskPage())),
+          MyButton(
+              label: "+ Add Task",
+              onTap: () async {
+                await Get.to(() => AddTaskPage());
+                _taskController.getTasks();
+              })
         ],
       ),
     );
