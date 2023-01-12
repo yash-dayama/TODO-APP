@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_todo/Ui/home_page.dart';
+import 'package:flutter_todo/Ui/splash_screen.dart';
 import 'package:flutter_todo/Ui/widgets/add_task_bar.dart';
 import 'package:flutter_todo/db/db_helper.dart';
 import 'package:flutter_todo/services/theme_services.dart';
@@ -22,11 +23,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-        title: 'Flutter Demo',
+        title: 'Do-Todo',
         debugShowCheckedModeBanner: false,
         theme: Themes.light,
         darkTheme: Themes.dark,
         themeMode: ThemeServices().theme,
-        home: HomePage());
+        home: SplashScreen());
   }
 }

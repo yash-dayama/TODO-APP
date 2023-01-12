@@ -15,15 +15,17 @@ class MyButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final currentWidth = MediaQuery.of(context).size.width;
+    final currentHeight = MediaQuery.of(context).size.height;
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        height: 60,
-        width: 100,
+        height: currentHeight * 0.07,
+        width: currentWidth * 0.3,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20.0), color: primaryClr),
         child: Padding(
-          padding: EdgeInsets.all(20.0),
+          padding: EdgeInsets.all(currentHeight * 0.025),
           child: Text(
             label,
             textAlign: TextAlign.center,
