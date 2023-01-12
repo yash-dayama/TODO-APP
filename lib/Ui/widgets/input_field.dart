@@ -18,8 +18,10 @@ class MyInputField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final currentWidth = MediaQuery.of(context).size.width;
+    final currentHeight = MediaQuery.of(context).size.height;
     return Container(
-      margin: EdgeInsets.only(top: 16.0),
+      margin: EdgeInsets.only(top: currentHeight * 0.02),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -28,9 +30,9 @@ class MyInputField extends StatelessWidget {
             style: titleStyle,
           ),
           Container(
-            height: 50,
-            margin: EdgeInsets.only(top: 8.0),
-            padding: EdgeInsets.only(left: 14.0),
+            height: currentHeight * 0.065,
+            margin: EdgeInsets.only(top: currentHeight * 0.01),
+            padding: EdgeInsets.only(left: currentWidth * 0.0),
             decoration: BoxDecoration(
                 border: Border.all(
                   color: Colors.grey,

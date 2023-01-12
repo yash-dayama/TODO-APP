@@ -46,10 +46,24 @@ dependencies:
   flutter_local_notifications: ^9.7.0
   flutter_native_timezone: ^2.0.0
   sqflite:
+  flutter_staggered_animations:
+  lottie: ^2.2.0
+  
+
+
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_launcher_icons: ^0.11.0
+
+flutter_icons: 
+  android: true
+  ios: true
+  image_path: "images/dotodologo.png"
+  adaptive_icon_background: "#ffffff"
+  adaptive_icon_foreground: "images/logo.png"
+
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

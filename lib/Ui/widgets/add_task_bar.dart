@@ -31,10 +31,13 @@ class _AddTaskPageState extends State<AddTaskPage> {
   int _selectedColor = 0;
   @override
   Widget build(BuildContext context) {
+    final currentWidth = MediaQuery.of(context).size.width;
+    final currentHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: _appBar(context),
       body: Container(
-        padding: EdgeInsets.only(left: 20.0, right: 20.0),
+        padding: EdgeInsets.only(
+            left: currentWidth * 0.04, right: currentWidth * 0.04),
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Column(
@@ -53,18 +56,23 @@ class _AddTaskPageState extends State<AddTaskPage> {
                 hint: 'Enter note here',
                 controller: _noteController,
               ),
-              MyInputField(
-                title: 'Date',
-                hint: DateFormat.yMd().format(_selectedDate),
-                widget: IconButton(
-                  icon: Icon(
-                    Icons.calendar_today_outlined,
-                    color: Colors.grey,
+              InkWell(
+                onTap: () {
+                  return _getDateFromUser();
+                },
+                child: MyInputField(
+                  title: 'Date',
+                  hint: DateFormat.yMd().format(_selectedDate),
+                  widget: IconButton(
+                    icon: Icon(
+                      Icons.calendar_today_outlined,
+                      color: Colors.grey,
+                    ),
+                    onPressed: () {
+                      print("Hi there");
+                      _getDateFromUser();
+                    },
                   ),
-                  onPressed: () {
-                    print("Hi there");
-                    _getDateFromUser();
-                  },
                 ),
               ),
               Row(
@@ -83,7 +91,7 @@ class _AddTaskPageState extends State<AddTaskPage> {
                         )),
                   )),
                   SizedBox(
-                    width: 12,
+                    width: currentWidth * 0.02,
                   ),
                   Expanded(
                       child: MyInputField(
@@ -154,7 +162,7 @@ class _AddTaskPageState extends State<AddTaskPage> {
                 ),
               ),
               SizedBox(
-                height: 18,
+                height: currentHeight * 0.03,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -209,7 +217,7 @@ class _AddTaskPageState extends State<AddTaskPage> {
           style: titleStyle,
         ),
         SizedBox(
-          height: 8.0,
+          height: 8,
         ),
         Wrap(
             children: List<Widget>.generate(3, (int index) {
