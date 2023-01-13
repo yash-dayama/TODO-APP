@@ -59,7 +59,8 @@ class _SplashScreenState extends State<SplashScreen> {
                       borderRadius: BorderRadius.circular(20.0),
                     )),
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (context) {
                     return HomePage();
                   }));
                 },

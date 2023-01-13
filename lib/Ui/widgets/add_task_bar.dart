@@ -150,6 +150,7 @@ class _AddTaskPageState extends State<AddTaskPage> {
                   onChanged: (String? newvalue) {
                     setState(() {
                       _selectedRepeat = newvalue!;
+                      print(_selectedRepeat);
                     });
                   },
                   items:
@@ -202,6 +203,7 @@ class _AddTaskPageState extends State<AddTaskPage> {
       startTime: _startTime,
       endTime: _endTime,
       remind: _selectedRemind,
+      repeat: _selectedRepeat,
       color: _selectedColor,
       isCompleted: 0,
     ));

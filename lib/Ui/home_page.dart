@@ -64,6 +64,7 @@ class _HomePageState extends State<HomePage> {
               // print(_taskController.taskList.length);
               Task task = _taskController.taskList[index];
               print(task.toJson());
+              print(task.repeat);
 // beautiful representation is by staggred list
               if (task.repeat == 'Daily') {
                 DateTime date =
@@ -73,8 +74,7 @@ class _HomePageState extends State<HomePage> {
                 notifyHelper.scheduledNotification(
                     int.parse(myTime.toString().split(":")[0]),
                     int.parse(myTime.toString().split(":")[1]),
-                    task
-                  );
+                    task);
 
                 return AnimationConfiguration.staggeredList(
                     position: index,
