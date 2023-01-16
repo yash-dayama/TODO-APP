@@ -1,7 +1,5 @@
 // initalize DB
 
-import 'dart:ffi';
-
 import 'package:flutter/cupertino.dart';
 import 'package:sqflite/sqflite.dart';
 

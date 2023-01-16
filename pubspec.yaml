@@ -48,6 +48,10 @@ dependencies:
   sqflite:
   flutter_staggered_animations:
   lottie: ^2.2.0
+  flutter_clean_calendar: ^1.1.0
+
+
+
   
 
 

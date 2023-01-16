@@ -38,144 +38,298 @@ class _AddTaskPageState extends State<AddTaskPage> {
       body: Container(
         padding: EdgeInsets.only(
             left: currentWidth * 0.04, right: currentWidth * 0.04),
-        child: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          child: Column(
-            children: [
-              Text(
-                'Add Task',
-                style: headingStyle,
-              ),
-              MyInputField(
-                title: 'Title',
-                hint: 'Enter title here',
-                controller: _titleController,
-              ),
-              MyInputField(
-                title: 'Note',
-                hint: 'Enter note here',
-                controller: _noteController,
-              ),
-              InkWell(
-                onTap: () {
-                  return _getDateFromUser();
-                },
-                child: MyInputField(
-                  title: 'Date',
-                  hint: DateFormat.yMd().format(_selectedDate),
-                  widget: IconButton(
-                    icon: Icon(
-                      Icons.calendar_today_outlined,
-                      color: Colors.grey,
-                    ),
-                    onPressed: () {
-                      print("Hi there");
-                      _getDateFromUser();
+        child: LayoutBuilder(builder: (context, constraints) {
+          if (constraints.maxWidth < 650) {
+            return SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              child: Column(
+                children: [
+                  Text(
+                    'Add Task',
+                    style: headingStyle,
+                  ),
+                  MyInputField(
+                    title: 'Title',
+                    hint: 'Enter title here (20 char max.)',
+                    controller: _titleController,
+                  ),
+                  MyInputField(
+                    title: 'Note',
+                    hint: 'Enter note here (30 char max.)',
+                    controller: _noteController,
+                  ),
+                  InkWell(
+                    onTap: () {
+                      return _getDateFromUser();
                     },
-                  ),
-                ),
-              ),
-              Row(
-                children: [
-                  Expanded(
-                      child: MyInputField(
-                    title: "Start Time",
-                    hint: _startTime,
-                    widget: IconButton(
-                        onPressed: () {
-                          _getTimeFromUser(isStartTime: true);
-                        },
+                    child: MyInputField(
+                      title: 'Date',
+                      hint: DateFormat.yMd().format(_selectedDate),
+                      widget: IconButton(
                         icon: Icon(
-                          Icons.access_time_rounded,
+                          Icons.calendar_today_outlined,
                           color: Colors.grey,
-                        )),
-                  )),
+                        ),
+                        onPressed: () {
+                          print("Hi there");
+                          _getDateFromUser();
+                        },
+                      ),
+                    ),
+                  ),
+                  Row(
+                    children: [
+                      Expanded(
+                          child: MyInputField(
+                        title: "Start Time",
+                        hint: _startTime,
+                        widget: IconButton(
+                            onPressed: () {
+                              _getTimeFromUser(isStartTime: true);
+                            },
+                            icon: Icon(
+                              Icons.access_time_rounded,
+                              color: Colors.grey,
+                            )),
+                      )),
+                      SizedBox(
+                        width: currentWidth * 0.02,
+                      ),
+                      Expanded(
+                          child: MyInputField(
+                        title: "End Time",
+                        hint: _endTime,
+                        widget: IconButton(
+                            onPressed: () {
+                              _getTimeFromUser(isStartTime: false);
+                            },
+                            icon: Icon(
+                              Icons.access_time_rounded,
+                              color: Colors.grey,
+                            )),
+                      ))
+                    ],
+                  ),
+                  MyInputField(
+                    title: "Remind",
+                    hint: "$_selectedRemind minutes early",
+                    widget: DropdownButton(
+                      icon: Icon(
+                        Icons.keyboard_arrow_down,
+                        color: Colors.grey,
+                      ),
+                      iconSize: 32,
+                      elevation: 4,
+                      style: subTitleStyle,
+                      underline: Container(
+                        height: 0,
+                      ),
+                      onChanged: (String? newvalue) {
+                        setState(() {
+                          _selectedRemind = int.parse(newvalue!);
+                        });
+                      },
+                      items:
+                          remindList.map<DropdownMenuItem<String>>((int value) {
+                        return DropdownMenuItem<String>(
+                            value: value.toString(),
+                            child: Text(value.toString()));
+                      }).toList(),
+                    ),
+                  ),
+                  MyInputField(
+                    title: "Repeat",
+                    hint: "$_selectedRepeat",
+                    widget: DropdownButton(
+                      icon: Icon(
+                        Icons.keyboard_arrow_down,
+                        color: Colors.grey,
+                      ),
+                      iconSize: 32,
+                      elevation: 4,
+                      style: subTitleStyle,
+                      underline: Container(
+                        height: 0,
+                      ),
+                      onChanged: (String? newvalue) {
+                        setState(() {
+                          _selectedRepeat = newvalue!;
+                          print(_selectedRepeat);
+                        });
+                      },
+                      items: repeatList
+                          .map<DropdownMenuItem<String>>((String? value) {
+                        return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value!,
+                                style: TextStyle(color: Colors.grey)));
+                      }).toList(),
+                    ),
+                  ),
                   SizedBox(
-                    width: currentWidth * 0.02,
+                    height: currentHeight * 0.03,
                   ),
-                  Expanded(
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      _colorPallete(),
+                      Container(
+                          height: currentHeight * 0.07,
+                          width: currentWidth * 0.3,
+                          child: MyButton(
+                              label: "+ Create", onTap: () => _validateDate()))
+                    ],
+                  )
+                ],
+              ),
+            );
+          } else {
+            return Container(
+              child: SingleChildScrollView(
+                scrollDirection: Axis.vertical,
+                child: Column(
+                  children: [
+                    Text(
+                      'Add Task',
+                      style: headingStyle,
+                    ),
+                    MyInputField(
+                      title: 'Title',
+                      hint: 'Enter title here (20 char max.)',
+                      controller: _titleController,
+                    ),
+                    MyInputField(
+                      title: 'Note',
+                      hint: 'Enter note here (30 char max.)',
+                      controller: _noteController,
+                    ),
+                    InkWell(
+                      onTap: () {
+                        return _getDateFromUser();
+                      },
                       child: MyInputField(
-                    title: "End Time",
-                    hint: _endTime,
-                    widget: IconButton(
-                        onPressed: () {
-                          _getTimeFromUser(isStartTime: false);
-                        },
+                        title: 'Date',
+                        hint: DateFormat.yMd().format(_selectedDate),
+                        widget: IconButton(
+                          icon: Icon(
+                            Icons.calendar_today_outlined,
+                            color: Colors.grey,
+                          ),
+                          onPressed: () {
+                            print("Hi there");
+                            _getDateFromUser();
+                          },
+                        ),
+                      ),
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: MyInputField(
+                            title: "Start Time",
+                            hint: _startTime,
+                            widget: IconButton(
+                                onPressed: () {
+                                  _getTimeFromUser(isStartTime: true);
+                                },
+                                icon: Icon(
+                                  Icons.access_time_rounded,
+                                  color: Colors.grey,
+                                )),
+                          ),
+                        ),
+                        SizedBox(
+                          width: currentWidth * 0.02,
+                        ),
+                        Expanded(
+                            child: MyInputField(
+                          title: "End Time",
+                          hint: _endTime,
+                          widget: IconButton(
+                              onPressed: () {
+                                _getTimeFromUser(isStartTime: false);
+                              },
+                              icon: Icon(
+                                Icons.access_time_rounded,
+                                color: Colors.grey,
+                              )),
+                        ))
+                      ],
+                    ),
+                    MyInputField(
+                      title: "Remind",
+                      hint: "$_selectedRemind minutes early",
+                      widget: DropdownButton(
                         icon: Icon(
-                          Icons.access_time_rounded,
+                          Icons.keyboard_arrow_down,
                           color: Colors.grey,
-                        )),
-                  ))
-                ],
-              ),
-              MyInputField(
-                title: "Remind",
-                hint: "$_selectedRemind minutes early",
-                widget: DropdownButton(
-                  icon: Icon(
-                    Icons.keyboard_arrow_down,
-                    color: Colors.grey,
-                  ),
-                  iconSize: 32,
-                  elevation: 4,
-                  style: subTitleStyle,
-                  underline: Container(
-                    height: 0,
-                  ),
-                  onChanged: (String? newvalue) {
-                    setState(() {
-                      _selectedRemind = int.parse(newvalue!);
-                    });
-                  },
-                  items: remindList.map<DropdownMenuItem<String>>((int value) {
-                    return DropdownMenuItem<String>(
-                        value: value.toString(), child: Text(value.toString()));
-                  }).toList(),
+                        ),
+                        iconSize: 32,
+                        elevation: 4,
+                        style: subTitleStyle,
+                        underline: Container(
+                          height: 0,
+                        ),
+                        onChanged: (String? newvalue) {
+                          setState(() {
+                            _selectedRemind = int.parse(newvalue!);
+                          });
+                        },
+                        items: remindList
+                            .map<DropdownMenuItem<String>>((int value) {
+                          return DropdownMenuItem<String>(
+                              value: value.toString(),
+                              child: Text(value.toString()));
+                        }).toList(),
+                      ),
+                    ),
+                    MyInputField(
+                      title: "Repeat",
+                      hint: "$_selectedRepeat",
+                      widget: DropdownButton(
+                        icon: Icon(
+                          Icons.keyboard_arrow_down,
+                          color: Colors.grey,
+                        ),
+                        iconSize: 32,
+                        elevation: 4,
+                        style: subTitleStyle,
+                        underline: Container(
+                          height: 0,
+                        ),
+                        onChanged: (String? newvalue) {
+                          setState(() {
+                            _selectedRepeat = newvalue!;
+                            print(_selectedRepeat);
+                          });
+                        },
+                        items: repeatList
+                            .map<DropdownMenuItem<String>>((String? value) {
+                          return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(value!,
+                                  style: TextStyle(color: Colors.grey)));
+                        }).toList(),
+                      ),
+                    ),
+                    SizedBox(
+                      height: currentHeight * 0.03,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        _colorPallete(),
+                        MyButton(
+                            label: "+ Create", onTap: () => _validateDate())
+                      ],
+                    ),
+                  ],
                 ),
               ),
-              MyInputField(
-                title: "Repeat",
-                hint: "$_selectedRepeat",
-                widget: DropdownButton(
-                  icon: Icon(
-                    Icons.keyboard_arrow_down,
-                    color: Colors.grey,
-                  ),
-                  iconSize: 32,
-                  elevation: 4,
-                  style: subTitleStyle,
-                  underline: Container(
-                    height: 0,
-                  ),
-                  onChanged: (String? newvalue) {
-                    setState(() {
-                      _selectedRepeat = newvalue!;
-                      print(_selectedRepeat);
-                    });
-                  },
-                  items:
-                      repeatList.map<DropdownMenuItem<String>>((String? value) {
-                    return DropdownMenuItem<String>(
-                        value: value,
-                        child:
-                            Text(value!, style: TextStyle(color: Colors.grey)));
-                  }).toList(),
-                ),
-              ),
-              SizedBox(
-                height: currentHeight * 0.03,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  _colorPallete(),
-                  MyButton(label: "+ Create", onTap: () => _validateDate())
-                ],
-              )
-            ],
-          ),
-        ),
+            );
+          }
+        }),
       ),
     );
   }
