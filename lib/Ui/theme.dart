@@ -3,6 +3,13 @@ import 'package:get/state_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
 
+/*
+author: theme.dart
+description: theme page
+date: 09:01:23
+*/
+
+// colors for the icon
 const Color bluishClr = Color(0xFF4e5ae8);
 const Color yellowClr = Color(0xFFFFB746);
 const Color pinkClr = Color(0xFFff4667);
@@ -11,6 +18,7 @@ const primaryClr = bluishClr;
 const Color darkGreyClr = Color(0xFF121212);
 Color darkHeaderClr = Color.fromARGB(255, 104, 103, 103);
 
+// class theme for the activation of night mode
 class Themes {
   static final light = ThemeData(
       backgroundColor: Colors.white,
@@ -23,6 +31,7 @@ class Themes {
       brightness: Brightness.dark);
 }
 
+// styling of the theme
 TextStyle get subHeadingStyle {
   return GoogleFonts.lato(
       textStyle: TextStyle(

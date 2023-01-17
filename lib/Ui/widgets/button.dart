@@ -5,6 +5,13 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_todo/Ui/theme.dart';
 import 'package:get/get.dart';
 
+/*
+author: button.dart (Ali)
+description: add task button
+date: 10:01:23
+*/
+
+// add task button on top right corner
 class MyButton extends StatelessWidget {
   final String label;
   final Function()? onTap;

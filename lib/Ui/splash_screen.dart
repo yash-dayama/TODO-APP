@@ -2,6 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_todo/Ui/home_page.dart';
 import 'package:lottie/lottie.dart';
 
+/*
+author: splash_screen.dart
+description: splash screen
+date: 12:01:23
+*/
+
+// this is the splash screen of the app
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
@@ -9,6 +16,7 @@ class SplashScreen extends StatefulWidget {
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
+// the annimation logo and button of the first screen
 class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {

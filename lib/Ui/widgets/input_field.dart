@@ -4,7 +4,13 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_todo/Ui/theme.dart';
 import 'package:get/get.dart';
+/*
+author: input_field.dart(Ali)
+description: input section
+date: 12:01:23
+*/
 
+// where all the inputs are taken by user in MyInputField
 class MyInputField extends StatelessWidget {
   final String title;
   final String hint;
@@ -54,7 +60,6 @@ class MyInputField extends StatelessWidget {
                         controller: controller,
                         style: subTitleStyle,
                         decoration: InputDecoration(
-                          
                           border: InputBorder.none,
                           hintText: hint,
                           contentPadding: EdgeInsets.all(currentHeight * 0.01),

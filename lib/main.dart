@@ -8,7 +8,14 @@ import 'package:flutter_todo/services/theme_services.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get_storage/get_storage.dart';
 import 'Ui/theme.dart';
+/*
+author:
+description:
+date:
+*/
 
+
+// database initializer
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await DBHelper.initDb();
@@ -16,6 +23,7 @@ Future<void> main() async {
   runApp(const MyApp());
 }
 
+// main class of the appliaction
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
