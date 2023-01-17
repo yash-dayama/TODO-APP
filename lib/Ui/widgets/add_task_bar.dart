@@ -55,7 +55,7 @@ class _AddTaskPageState extends State<AddTaskPage> {
                   ),
                   MyInputField(
                     title: 'Title',
-                    hint: 'Enter title here (20 char max.)',
+                    hint: 'Enter title here (30 char max.)',
                     controller: _titleController,
                   ),
                   MyInputField(
@@ -201,7 +201,7 @@ class _AddTaskPageState extends State<AddTaskPage> {
                     ),
                     MyInputField(
                       title: 'Title',
-                      hint: 'Enter title here (20 char max.)',
+                      hint: 'Enter title here (30 char max.)',
                       controller: _titleController,
                     ),
                     MyInputField(
