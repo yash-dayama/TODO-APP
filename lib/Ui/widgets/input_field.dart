@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/src/widgets/container.dart';
@@ -52,6 +54,9 @@ class MyInputField extends StatelessWidget {
                   children: [
                     Expanded(
                       child: TextFormField(
+                        inputFormatters: [
+                          LengthLimitingTextInputFormatter(30),
+                        ],
                         readOnly: widget == null ? false : true,
                         autofocus: false,
                         cursorColor: Get.isDarkMode
@@ -60,6 +65,7 @@ class MyInputField extends StatelessWidget {
                         controller: controller,
                         style: subTitleStyle,
                         decoration: InputDecoration(
+                          counterStyle: TextStyle(color: Colors.red),
                           border: InputBorder.none,
                           hintText: hint,
                           contentPadding: EdgeInsets.all(currentHeight * 0.01),
@@ -95,6 +101,9 @@ class MyInputField extends StatelessWidget {
                   children: [
                     Expanded(
                       child: TextFormField(
+                        inputFormatters: [
+                          LengthLimitingTextInputFormatter(30),
+                        ],
                         readOnly: widget == null ? false : true,
                         autofocus: false,
                         cursorColor: Get.isDarkMode
