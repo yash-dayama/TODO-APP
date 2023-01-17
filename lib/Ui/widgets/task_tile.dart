@@ -5,10 +5,17 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../Models/task.dart';
 import '../theme.dart';
 
+/*
+author: task_tile.dart (Yash P)
+description: where the body of the page is diaplayed
+date: 12:01:23
+*/
+
+// where the tasks are shown is task tile class
 class TaskTile extends StatelessWidget {
   final Task? task;
   TaskTile(this.task);
-
+// where the todo and completed actions are displayed
   @override
   Widget build(BuildContext context) {
     final currentWidth = MediaQuery.of(context).size.width;

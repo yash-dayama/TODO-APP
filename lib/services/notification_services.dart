@@ -10,6 +10,12 @@ import 'package:timezone/timezone.dart' as tz;
 import '../Models/task.dart';
 import '../Ui/notified_page.dart';
 
+/*
+author: notifiication_services.dart (Yash P & D)
+description: getting all he notification services
+date: 10:01:23
+*/
+// this is for initalizing the ios and android notification
 class NotifyHelper {
   FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
@@ -48,6 +54,7 @@ class NotifyHelper {
         );
   }
 
+// to display the notification
   Future<void> displayNotification(
       {required String title, required String body}) async {
     print("doing test");
@@ -71,6 +78,7 @@ class NotifyHelper {
     );
   }
 
+// for daily basis of the notifications using the local time of the phone
   scheduledNotification(int hour, int minutes, Task task) async {
     await flutterLocalNotificationsPlugin.zonedSchedule(
         task.id!.toInt(),

@@ -3,7 +3,13 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+/*
+author: notified_page.dart
+description: add task button
+date: 12:01:23
+*/
 
+// the page after the calling of notification which displays the time title description
 class NotifiedPage extends StatelessWidget {
   final String? label;
   const NotifiedPage({Key? key, required this.label}) : super(key: key);

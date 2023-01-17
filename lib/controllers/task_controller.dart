@@ -8,6 +8,11 @@ import 'package:get/get.dart';
 
 import '../Models/task.dart';
 
+/*
+author: task_controller.dart (Yash P)
+description: taking Getx and calling in TaskController
+date: 11:01:23
+*/
 class TaskController extends GetxController {
   // get tasks => null;
 

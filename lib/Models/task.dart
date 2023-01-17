@@ -1,4 +1,11 @@
 // how to get and save database
+
+/*
+author: task.dart(Yash D)
+description: add task button
+date: 11:01:23
+*/
+// assiging the datatype values
 class Task {
   int? id;
   String? title;
@@ -23,7 +30,7 @@ class Task {
     this.remind,
     this.repeat,
   });
-
+// in the json format
   Task.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     title = json['title'];

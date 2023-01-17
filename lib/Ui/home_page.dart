@@ -16,6 +16,12 @@ import 'package:intl/intl.dart';
 import '../Models/task.dart';
 import '../services/notification_services.dart';
 
+/*
+author: home_page.dart
+description: the home page
+date: 09:01:23
+*/
+
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -23,6 +29,7 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
+// home page calling date time and notifications
 class _HomePageState extends State<HomePage> {
   DateTime _selectedDate = DateTime.now();
   final _taskController = Get.put(TaskController());
@@ -57,6 +64,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+// show task method in the home page
   _showTasks() {
     return Expanded(
       child: Obx(() {
@@ -118,6 +126,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+// the bottom sheet which includes the delete and completed task
   _showBottomSheet(BuildContext context, Task task) {
     Get.bottomSheet(
       Container(
@@ -211,6 +220,7 @@ class _HomePageState extends State<HomePage> {
         ));
   }
 
+// add date option on the top of the calander
   _addDateBar() {
     return Container(
       margin: EdgeInsets.only(
